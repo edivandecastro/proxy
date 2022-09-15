@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  reverse-proxy:
+    container_name: "proxy"
+    build:
+      dockerfile: ./nginx/Dockerfile
+      context: .
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+  app:
+    container_name: "app"
+    build:
+      dockerfile: ./nodejs/Dockerfile
+      context: .
+    ports:
+      - "3000:3000"
